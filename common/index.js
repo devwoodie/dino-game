@@ -1,3 +1,8 @@
+window.addEventListener('load',() => {
+    //실행
+    startFrame();
+})
+
 var canvas = document.getElementById('canvas');
 var ctx = canvas.getContext('2d');
 
@@ -67,11 +72,12 @@ const elAbScore = document.querySelector('.abscore i');
 //프레임마다 실행 할 함수
 function startFrame(){
     animation = requestAnimationFrame(startFrame);
+
     timer++;
     //canvas del
     ctx.clearRect(0,0,canvas.width,canvas.height);
     //구름 그리기
-    if(timer % 400 === 0){
+    if(timer % 230 === 0){
         var cloud = new Cloud();
         var randomNum = Math.random() * 200;
         var randomNumFloor = Math.floor(randomNum);
@@ -86,11 +92,11 @@ function startFrame(){
             o.splice(i, 1);
         };
         //구름 실행
-        cloudDraw.x--;
+        cloudDraw.x -= 3;
         cloudDraw.draw();
     });
     //장애물 그리기
-    if(timer % 350 === 0){
+    if(timer % 150 === 0){
         var obstacle = new Obstacle();
         obstacleAll.push(obstacle);
     }
@@ -100,20 +106,20 @@ function startFrame(){
             o.splice(i, 1);
         };
         //장애물 실행
-        obtDraw.x--;
+        obtDraw.x -= 7;
         crash(dino, obtDraw);
         obtDraw.draw();
     });
     if(jumping == true){
-        dino.y -= 10 ;
+        dino.y -= 15 ;
         jumpTimer++;
     };
     if(jumping == false){
         if(dino.y < 715){
-            dino.y += 10 ;
+            dino.y += 15 ;
         }
     };
-    if(jumpTimer > 30){
+    if(jumpTimer > 20){
         jumping = false;
         jumpTimer = 0;
     };
@@ -124,8 +130,7 @@ function startFrame(){
     elAbScore.innerHTML = abScore;
 };
 
-//실행
-startFrame();
+
 //충돌 확인
 function crash(dino, obt){
     var xDiff = obt.x - (dino.x + dino.width);
