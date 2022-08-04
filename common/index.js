@@ -25,7 +25,7 @@ var dino = {
 //장애물 그리기
 class Obstacle{
     constructor() {
-        this.x = 900;
+        this.x = 1300;
         this.y = 715;
         this.width = 50;
         this.height = 130;
@@ -68,16 +68,17 @@ var animation;
 var score = 0;
 var abScore = 0;
 const elAbScore = document.querySelector('.abscore i');
+var obtArr;
+var obtArrRandom;
 
 //프레임마다 실행 할 함수
 function startFrame(){
     animation = requestAnimationFrame(startFrame);
-
     timer++;
     //canvas del
     ctx.clearRect(0,0,canvas.width,canvas.height);
     //구름 그리기
-    if(timer % 230 === 0){
+    if(timer % 200 === 0){
         var cloud = new Cloud();
         var randomNum = Math.random() * 200;
         var randomNumFloor = Math.floor(randomNum);
@@ -100,6 +101,15 @@ function startFrame(){
         var obstacle = new Obstacle();
         obstacleAll.push(obstacle);
     }
+    function randomInt(){
+        obtArr = [1, 50, 100, 150];
+        obtArrRandom = obtArr[Math.floor(Math.random() * obtArr.length)];
+        return obtArrRandom
+    }
+    function getRandomInt(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
     obstacleAll.forEach((obtDraw, i, o) => {
         //x좌표가 0 미만이면 제거
         if(obtDraw.x < 225){
@@ -110,6 +120,7 @@ function startFrame(){
         crash(dino, obtDraw);
         obtDraw.draw();
     });
+    console.log('jumping-->',jumping)
     if(jumping == true){
         dino.y -= 15 ;
         jumpTimer++;
@@ -117,19 +128,24 @@ function startFrame(){
     if(jumping == false){
         if(dino.y < 715){
             dino.y += 15 ;
-        }
+        };
     };
     if(jumpTimer > 20){
         jumping = false;
         jumpTimer = 0;
     };
+    document.addEventListener('keydown',(e) => {
+        if(e.code === 'Space'){
+            e.preventDefault();
+            e.returnValue = false;
+        };
+    });
     dino.draw();
 
     score = timer/90;
     abScore = Math.floor(score);
     elAbScore.innerHTML = abScore;
 };
-
 
 //충돌 확인
 function crash(dino, obt){
@@ -146,9 +162,21 @@ function crash(dino, obt){
 var jumping = false;
 document.addEventListener('keydown',(e) => {
     if(e.code === 'Space'){
+        // e.preventDefault();
+        // e.returnValue = false;
         jumping = true;
     };
 });
+
+//스페이스바 막기
+// function preventSpace(){
+//     document.addEventListener('keydown',(e) => {
+//         if(e.code === 'Space'){
+//             e.preventDefault();
+//             e.returnValue = false;
+//         };
+//     });
+// };
 
 // ready/go
 setTimeout(() => {
