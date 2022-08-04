@@ -6,7 +6,54 @@
 
 </head>
 <body>
-    <canvas id="canvas"></canvas>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+        *{font-family: 'Press Start 2P', cursive; box-sizing: border-box;}
+        body,html{margin: 0; padding: 0;}
+        body{background-color: #e6e6e6;}
+        h1{margin: 100px auto 50px; text-align: center; font-size: 50px;}
+        .canvas-wrap{ width: 1000px; height: 400px; margin: 0 auto; border-bottom: 5px solid #575757; background-color: #fff}
+        #canvas{display: inline-block; width: 100%; height: 100%;}
+        .abscore{display: block; text-align: right; padding: 10px 20px; width: 1000px; margin: 0 auto;}
+        .popup-wrap.active{display: block;}
+        .popup-wrap{width: 100vw; height: 100vh; background-color: rgba(0, 0, 0, 0.3); position: absolute; left: 0; top: 0; display: none; animation: popup 1s forwards ease-in;}
+        .popup-wrap .popup{width: 400px; background-color: #e6e6e6; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); padding: 50px 20px; text-align: center;}
+        .popup-wrap .popup h2{}
+        .popup-wrap .popup .score{display: block; margin-top: 20px}
+        .popup-wrap .popup a{font-size: 16px; cursor: pointer; display: inline-block; margin-top: 40px; text-decoration: underline;}
+        @keyframes popup { 0%{opacity: 0;} 100%{opacity: 1;} }
+        .info{margin-top: 50px; text-align: center;}
+        .info span{display: block;}
+        .info .txt{font-size: 20px;}
+        .info .space{margin: 20px auto 0; font-size: 25px; border: 2px solid #000; width: 400px; padding: 10px 0; animation: space 2s forwards infinite ease-in-out}
+        @keyframes space {
+            0%{color: #000; background-color: #e6e6e6;} 50%{color: #e6e6e6; background-color: #000;} 100%{color: #000; background-color: #e6e6e6;}
+        }
+        .ready{position: absolute; left: 50%; top: 40%; transform: translate(-50%, -50%); font-size: 50px; }
+        .go{position: absolute; left: 50%; top: 40%; transform: translate(-50%, -50%); font-size: 50px; animation: go 1s forwards; display: none;}
+        @keyframes go { 0%{opacity: 0;} 100%{opacity: 1;} }
+    </style>
+    <h1>Dino-Runner</h1>
+    <span class="abscore">score : <i>5</i></span>
+    <div class="canvas-wrap">
+        <canvas id="canvas"></canvas>
+    </div>
+    <div class="info">
+        <span class="txt">press</span>
+        <span class="space">space bar</span>
+    </div>
+
+    <div class="ready">READY</div>
+    <div class="go">GO</div>
+
+    <div class="popup-wrap">
+        <div class="popup">
+            <h2>Game Over</h2>
+            <span class="score">score : <i>1003</i></span>
+            <a onClick="location.reload()">Restart</a>
+        </div>
+    </div>
+
     <script src="common/index.js"></script>
 </body>
 </html>
