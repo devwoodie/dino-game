@@ -1,7 +1,7 @@
 ### [Dino-game]
 `Study-Project`
 
-:link: **<a href="https://devwoodie.github.io/dino-game/" target=_blank>Site Link</a>** 
+:link: **<a href="https://devwoodie.github.io/dino-game/" target="_blank">Site Link</a>** 
 
 - **Use Stack**
   - HTML(Canvas)
