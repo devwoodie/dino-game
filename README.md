@@ -18,3 +18,6 @@ html의 canvas태그를 이용하여 작업을 하였고 위치와 움직임은 
 
 공룡과 장애물 각각의 x,y좌표가 만나게 되면 게임이 종료되는 방식입니다.
 ```
+
+![image](https://user-images.githubusercontent.com/86578755/188578035-4ea67fc1-9090-4440-be14-c979f024f600.png)
+
